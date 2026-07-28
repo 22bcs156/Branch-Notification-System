@@ -1,10 +1,11 @@
 const fs = require("fs");
 const nodemailer = require("nodemailer");
+const twilio = require("twilio");
 
 const event = JSON.parse(
     fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8")
 );
-
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const data = {
     repository: process.env.GITHUB_REPOSITORY,
     branch: process.env.GITHUB_REF.replace("refs/heads/", ""),
@@ -12,7 +13,7 @@ const data = {
     commitMessage: event.head_commit.message,
     timestamp: event.head_commit.timestamp
 };
-
+const team=["ayyanar210420051@gmail.com"];
 async function sendEmail() {
 
     const transporter = nodemailer.createTransport({
@@ -22,10 +23,10 @@ async function sendEmail() {
             pass: process.env.EMAIL_PASSWORD
         }
     });
-
+for (const email of team) {
     await transporter.sendMail({
         from: process.env.EMAIL,
-        to: "ayyanar210420051@gmail.com",
+        to: email,
         subject: `Branch Updated: ${data.branch}`,
         text: `
 Repository : ${data.repository}
@@ -40,7 +41,15 @@ Time : ${data.timestamp}
 `
     });
 
+}
+
     console.log("Email Sent Successfully");
 }
+// async function sendSMS() {
+//     const message = await client.messages.create({
+//         body: `Branch Updated: ${data.branch}\nRepository: ${data.repository}\nDeveloper: ${data.actor}\nCommit: ${data.commitMessage}\nTime: ${data.timestamp}`,
+//         from: "", // Replace with your Twilio phone number
+//         to: "+917904477883" // Replace with the recipient's phone number
+//     });}
 
 sendEmail().catch(console.error);

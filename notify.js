@@ -14,7 +14,7 @@ const data = {
     timestamp: event.head_commit.timestamp
 };
 const team=["ayyanar210420051@gmail.com",
-            "ayyanaroff@gmail.com"
+            "ayyanarayyanar21042005_bcs26@mepcoeng.ac.in"
 ];
 async function sendEmail() {
 

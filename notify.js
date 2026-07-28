@@ -13,7 +13,9 @@ const data = {
     commitMessage: event.head_commit.message,
     timestamp: event.head_commit.timestamp
 };
-const team=["ayyanar210420051@gmail.com"];
+const team=["ayyanar210420051@gmail.com",
+            "ayyanaroff@gmail.com"
+];
 async function sendEmail() {
 
     const transporter = nodemailer.createTransport({

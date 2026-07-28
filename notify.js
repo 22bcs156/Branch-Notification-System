@@ -13,7 +13,7 @@ const data = {
     commitMessage: event.head_commit.message,
     timestamp: event.head_commit.timestamp
 };
-const team=["ayyanar210420051@gmail.com",
+const team=[
             "ayyanarayyanar21042005_bcs26@mepcoeng.ac.in"
 ];
 async function sendEmail() {

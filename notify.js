@@ -25,7 +25,7 @@ async function sendEmail() {
 
     await transporter.sendMail({
         from: process.env.EMAIL,
-        to: "ayyanar21042005@gmail.com",
+        to: "ayyanar210420051@gmail.com",
         subject: `Branch Updated: ${data.branch}`,
         text: `
 Repository : ${data.repository}
